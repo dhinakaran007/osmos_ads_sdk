@@ -64,13 +64,6 @@ responses, missing `ads.banner_ads`, and invalid URL fields. Failures show
 `Ad not available` with a retry button. Duplicate ad fetches are prevented while
 the current request is in flight.
 
-## Assumptions
-
-- The assignment response shape is `ads.banner_ads[0]`.
-- The banner image should be rendered with a stable `16 / 9` container and
-  `BoxFit.contain` to preserve the source image aspect ratio.
-- The SDK boundary is isolated in `OsmosSdkService`; if a native Osmos Flutter
-  bridge is added later, only that service should need to change.
 
 ## How To Run
 
