@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../models/ad_banner.dart';
+import '../helpers/visibility_tracking_helper.dart';
 import '../services/ad_service.dart';
 import '../services/analytics_service.dart';
 import '../services/osmos_sdk_service.dart';
@@ -76,9 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _fireImpression() async {
+  Future<void> _fireImpression(double visibleFraction) async {
     final ad = _ad;
-    if (ad == null || _hasFiredImpression) {
+    if (!VisibilityTrackingHelper.shouldFireImpression(
+          visibleFraction: visibleFraction,
+          hasFired: _hasFiredImpression,
+        ) ||
+        ad == null) {
       return;
     }
 

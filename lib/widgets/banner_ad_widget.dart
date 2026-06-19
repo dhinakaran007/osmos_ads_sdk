@@ -15,7 +15,7 @@ class BannerAdWidget extends StatelessWidget {
 
   final AdBanner ad;
   final bool hasFiredImpression;
-  final VoidCallback onImpressionReady;
+  final ValueChanged<double> onImpressionReady;
   final VoidCallback onTap;
 
   @override
@@ -29,7 +29,7 @@ class BannerAdWidget extends StatelessWidget {
           visibleFraction: info.visibleFraction,
           hasFired: hasFiredImpression,
         )) {
-          onImpressionReady();
+          onImpressionReady(info.visibleFraction);
         }
       },
       child: Material(
